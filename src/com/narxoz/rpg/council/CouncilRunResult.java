@@ -1,38 +1,44 @@
 package com.narxoz.rpg.council;
 
-/**
- * Summary of a guild war council planning run.
- */
+import com.narxoz.rpg.quest.Quest;
+import java.util.List;
+
 public class CouncilRunResult {
+    private final boolean success;
+    private final int questsReviewed;
+    private final List<Quest> selectedQuests;
+    private final int resourcesAllocated;
+    private final int partySize;
 
-    private final int questsTraversed;
-    private final int messagesRouted;
-    private final int membersNotified;
-
-    public CouncilRunResult(int questsTraversed, int messagesRouted, int membersNotified) {
-        this.questsTraversed = questsTraversed;
-        this.messagesRouted = messagesRouted;
-        this.membersNotified = membersNotified;
+    public CouncilRunResult(boolean success, int questsReviewed, List<Quest> selectedQuests,
+                            int resourcesAllocated, int partySize) {
+        this.success = success;
+        this.questsReviewed = questsReviewed;
+        this.selectedQuests = selectedQuests;
+        this.resourcesAllocated = resourcesAllocated;
+        this.partySize = partySize;
     }
 
-    public int getQuestsTraversed() {
-        return questsTraversed;
-    }
+    public boolean isSuccess() { return success; }
+    public int getQuestsReviewed() { return questsReviewed; }
+    public List<Quest> getSelectedQuests() { return selectedQuests; }
+    public int getResourcesAllocated() { return resourcesAllocated; }
+    public int getPartySize() { return partySize; }
 
-    public int getMessagesRouted() {
-        return messagesRouted;
-    }
+    public void display() {
+        System.out.println("\n╔════════════════════════════════════════════╗");
+        System.out.println("║          WAR COUNCIL RESULTS               ║");
+        System.out.println("╚════════════════════════════════════════════╝");
+        System.out.println("Council Success: " + (success ? "✓ YES" : "✗ NO"));
+        System.out.println("Quests Reviewed: " + questsReviewed);
+        System.out.println("Resources Allocated: " + resourcesAllocated);
+        System.out.println("Party Size: " + partySize);
 
-    public int getMembersNotified() {
-        return membersNotified;
-    }
-
-    @Override
-    public String toString() {
-        return "CouncilRunResult{"
-                + "questsTraversed=" + questsTraversed
-                + ", messagesRouted=" + messagesRouted
-                + ", membersNotified=" + membersNotified
-                + '}';
+        if (!selectedQuests.isEmpty()) {
+            System.out.println("\nSelected Quests:");
+            for (Quest q : selectedQuests) {
+                System.out.println("  - " + q);
+            }
+        }
     }
 }
