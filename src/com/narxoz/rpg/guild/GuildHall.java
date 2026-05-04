@@ -24,7 +24,7 @@ public class GuildHall implements GuildMediator {
         for (List<GuildMember> subscribers : topicSubscribers.values()) {
             subscribers.remove(member);
         }
-        System.out.println("[GUILD HALL] " + member.getName() + has left the guild.");
+        System.out.println("[GUILD HALL] " + member.getName() + " has left the guild.");
     }
 
     public void subscribe(String topic, GuildMember member) {
