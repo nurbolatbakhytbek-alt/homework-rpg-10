@@ -1,11 +1,9 @@
 package com.narxoz.rpg.quest;
 
-/**
- * Custom iterator protocol for traversing quests.
- */
-public interface QuestIterator {
+import java.util.Iterator;
 
+public interface QuestIterator extends Iterator<Quest> {
     boolean hasNext();
-
     Quest next();
+    void reset();
 }
