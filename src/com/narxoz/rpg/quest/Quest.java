@@ -1,45 +1,28 @@
 package com.narxoz.rpg.quest;
 
-/**
- * Immutable quest entry stored in the guild's quest log.
- */
 public class Quest {
-
     private final String title;
+    private final String description;
     private final QuestPriority priority;
     private final int rewardGold;
-    private final boolean urgent;
+    private final int rewardExp;
 
-    public Quest(String title, QuestPriority priority, int rewardGold, boolean urgent) {
+    public Quest(String title, String description, QuestPriority priority, int rewardGold, int rewardExp) {
         this.title = title;
+        this.description = description;
         this.priority = priority;
         this.rewardGold = rewardGold;
-        this.urgent = urgent;
+        this.rewardExp = rewardExp;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public QuestPriority getPriority() {
-        return priority;
-    }
-
-    public int getRewardGold() {
-        return rewardGold;
-    }
-
-    public boolean isUrgent() {
-        return urgent;
-    }
+    public String getTitle() { return title; }
+    public String getDescription() { return description; }
+    public QuestPriority getPriority() { return priority; }
+    public int getRewardGold() { return rewardGold; }
+    public int getRewardExp() { return rewardExp; }
 
     @Override
     public String toString() {
-        return "Quest{"
-                + "title='" + title + '\''
-                + ", priority=" + priority
-                + ", rewardGold=" + rewardGold
-                + ", urgent=" + urgent
-                + '}';
+        return String.format("[%s] %s (%d gold, %d exp)", priority, title, rewardGold, rewardExp);
     }
 }
