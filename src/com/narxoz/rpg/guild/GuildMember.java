@@ -1,26 +1,26 @@
 package com.narxoz.rpg.guild;
 
-/**
- * Base class for all guild officers that communicate through a mediator.
- */
 public abstract class GuildMember {
+    protected final String name;
+    protected GuildMediator mediator;
 
-    private final String name;
-    private final GuildMediator mediator;
-
-    protected GuildMember(String name, GuildMediator mediator) {
+    public GuildMember(String name) {
         this.name = name;
+    }
+
+    public void setMediator(GuildMediator mediator) {
         this.mediator = mediator;
-        mediator.register(this);
     }
 
     public String getName() {
         return name;
     }
 
-    protected GuildMediator getMediator() {
-        return mediator;
-    }
+    public abstract void receive(String message, String topic, GuildMember sender);
 
-    public abstract void receive(String topic, GuildMember from, String payload);
+    public void send(String message, String topic) {
+        if (mediator != null) {
+            mediator.send(message, topic, this);
+        }
+    }
 }
