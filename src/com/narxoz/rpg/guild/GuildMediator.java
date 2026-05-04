@@ -1,11 +1,7 @@
 package com.narxoz.rpg.guild;
 
-/**
- * Central communication contract for guild colleagues.
- */
 public interface GuildMediator {
-
+    void send(String message, String topic, GuildMember sender);
     void register(GuildMember member);
-
-    void dispatch(String topic, GuildMember from, String payload);
+    void unregister(GuildMember member);
 }
